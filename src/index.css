@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #1E1E1E;
 }
 
 code {
@@ -13,4 +14,8 @@ code {
     monospace;
 }
 
+*{
+  font-family: "Roboto", sans-serif;
+
+}
 

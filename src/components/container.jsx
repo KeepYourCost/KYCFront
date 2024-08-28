@@ -1,23 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Colors } from '../utils/color';
+import Sidebar from '../components/sidebar';
+import Header from "./header";
+import {ToastContainer} from "react-toastify";
 
-const StyledContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+const ContainerWrapper = styled.div`
+  display: flex;
   background-color: ${Colors.background};
-  color: ${Colors.text};
-  font-family: Arial, sans-serif;
   min-height: 100vh;
-
-  @media (max-width: 768px) {
-    padding: 0 10px;
-  }
 `;
 
+const ContentWrapper = styled.div`
+  flex-grow: 1;
+  //padding: 20px;
+  //overflow-y: auto;
+`;
+
+const Main = styled.div`
+  padding: 20px;
+  overflow-y: auto;
+  min-height: 100vh;
+`
 const Container = ({ children }) => {
-    return <StyledContainer>{children}</StyledContainer>;
+    return (
+        <ContainerWrapper>
+            <Sidebar />
+            <div style={{width: '260px'}}></div>
+            <ContentWrapper>
+                <Header />
+                <Main>
+                    {children}
+                </Main>
+            </ContentWrapper>
+            <ToastContainer />
+        </ContainerWrapper>
+    );
+
 };
 
 export default Container;

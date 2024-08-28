@@ -1,57 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Bell } from 'lucide-react';
-import {Colors} from "../utils/color";
-
-const MainColor = '#54BFFF';
-
-const Container = styled.div`
-  background-color: ${Colors.background};
-  color: ${Colors.text};
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-`;
-
-const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: ${Colors.secondaryBackground};
-`;
-
-const Logo = styled.h1`
-  color: ${Colors.primary};
-  margin: 0;
-  img{
-    height: 70px;
-  }
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 1rem;
-`;
-
-const NavItem = styled.a`
-  color: ${Colors.secondaryText};
-  text-decoration: none;
-  &:hover {
-    color: ${Colors.primary};
-  }
-`;
-
-const Button = styled.button`
-  background-color: ${Colors.primary};
-  color: ${Colors.text};
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-`;
+import { Colors } from '../utils/color';
+import Container from '../components/container';
+import Header from '../components/header';
 
 const Content = styled.main`
-  padding: 2rem;
+  padding: 2rem 0;
 `;
 
 const Title = styled.h2`
@@ -63,6 +17,7 @@ const Tabs = styled.div`
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  overflow-x: auto;
 `;
 
 const Tab = styled.span`
@@ -70,6 +25,7 @@ const Tab = styled.span`
   cursor: pointer;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid ${props => props.active ? Colors.primary : 'transparent'};
+  white-space: nowrap;
   &:hover {
     color: ${Colors.text};
   }
@@ -88,11 +44,13 @@ const NotificationItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const NotificationText = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 1rem;
 `;
 
 const NotificationTitle = styled.span`
@@ -106,66 +64,54 @@ const NotificationSubtitle = styled.span`
 
 const NotificationStatus = styled.span`
   color: ${Colors.primary};
+  margin-top: 0.5rem;
 `;
+
 const Notifications = () => {
     return (
         <Container>
-            <Header>
-                <Logo><img src={'/logo.png'}/> </Logo>
-    <Nav>
-    <NavItem href="#">Clusters</NavItem>
-        <NavItem href="#">Topics</NavItem>
-        <NavItem href="#">Consumers</NavItem>
-        <NavItem href="#">Connect</NavItem>
-        <NavItem href="#">ACLs</NavItem>
-        <NavItem href="#">Tools</NavItem>
-        </Nav>
-        <div>
-        <Button>New Cluster</Button>
-    <Bell color={MainColor} style={{ marginLeft: '1rem' }} />
-    </div>
-    </Header>
-    <Content>
-    <Title>Cluster Notifications</Title>
-    <Tabs>
-    <Tab active>All</Tab>
-    <Tab>Spot Instance</Tab>
-    <Tab>Data Lifecycle</Tab>
-    <Tab>Connect Failure</Tab>
-    </Tabs>
-    <NotificationList>
-    <NotificationItem>
-        <NotificationText>
-            <NotificationTitle>i-1234567890abcdef0</NotificationTitle>
-    <NotificationSubtitle>us-west-2c</NotificationSubtitle>
-    </NotificationText>
-    <NotificationStatus>Spot instance terminated</NotificationStatus>
-    </NotificationItem>
-    <NotificationItem>
-    <NotificationText>
-        <NotificationTitle>Backup Ready</NotificationTitle>
-    <NotificationSubtitle>2023-08-15 00:00:00</NotificationSubtitle>
-    </NotificationText>
-    <NotificationStatus>Backup Started</NotificationStatus>
-    </NotificationItem>
-    <NotificationItem>
-    <NotificationText>
-        <NotificationTitle>Backup Ready</NotificationTitle>
-    <NotificationSubtitle>2023-08-15 00:00:00</NotificationSubtitle>
-    </NotificationText>
-    <NotificationStatus>Backup Completed</NotificationStatus>
-    </NotificationItem>
-    <NotificationItem>
-    <NotificationText>
-        <NotificationTitle>i-1234567890abcdef0</NotificationTitle>
-    <NotificationSubtitle>us-west-2c</NotificationSubtitle>
-    </NotificationText>
-    <NotificationStatus>Spot instance terminated</NotificationStatus>
-    </NotificationItem>
-    </NotificationList>
-    </Content>
-    </Container>
-);
+            <Header />
+            <Content>
+                <Title>Cluster Notifications</Title>
+                <Tabs>
+                    <Tab active>All</Tab>
+                    <Tab>Spot Instance</Tab>
+                    <Tab>Data Lifecycle</Tab>
+                    <Tab>Connect Failure</Tab>
+                </Tabs>
+                <NotificationList>
+                    <NotificationItem>
+                        <NotificationText>
+                            <NotificationTitle>i-1234567890abcdef0</NotificationTitle>
+                            <NotificationSubtitle>us-west-2c</NotificationSubtitle>
+                        </NotificationText>
+                        <NotificationStatus>Spot instance terminated</NotificationStatus>
+                    </NotificationItem>
+                    <NotificationItem>
+                        <NotificationText>
+                            <NotificationTitle>Backup Ready</NotificationTitle>
+                            <NotificationSubtitle>2023-08-15 00:00:00</NotificationSubtitle>
+                        </NotificationText>
+                        <NotificationStatus>Backup Started</NotificationStatus>
+                    </NotificationItem>
+                    <NotificationItem>
+                        <NotificationText>
+                            <NotificationTitle>Backup Ready</NotificationTitle>
+                            <NotificationSubtitle>2023-08-15 00:00:00</NotificationSubtitle>
+                        </NotificationText>
+                        <NotificationStatus>Backup Completed</NotificationStatus>
+                    </NotificationItem>
+                    <NotificationItem>
+                        <NotificationText>
+                            <NotificationTitle>i-1234567890abcdef0</NotificationTitle>
+                            <NotificationSubtitle>us-west-2c</NotificationSubtitle>
+                        </NotificationText>
+                        <NotificationStatus>Spot instance terminated</NotificationStatus>
+                    </NotificationItem>
+                </NotificationList>
+            </Content>
+        </Container>
+    );
 };
 
 export default Notifications;
